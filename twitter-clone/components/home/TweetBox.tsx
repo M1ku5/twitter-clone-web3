@@ -27,7 +27,7 @@ const TweetBox = () => {
     return (
         <div className={style.wrapper}>
             <div className={style.tweetBoxLeft}>
-                <img 
+                <img
                 src="https://yt3.ggpht.com/ytc/AKedOLRY9Un_v7Xr9dG1F5NEkqGsGSqwqRz0O3w3r1mI=s900-c-k-c0x00ffffff-no-rj"
                 alt="profile-image"
                 className={style.profileImage}
@@ -48,7 +48,7 @@ const TweetBox = () => {
                             <IoMdCalendar className={style.icon} />
                             <MdOutlineLocationOn className={style.icon} />
                         </div>
-                        <button 
+                        <button
                         type="submit"
                         className={`${style.submitGeneral} ${ tweetMessage ? style.activeSubmit : style.inactiveSubmit}`}
                         disabled={!tweetMessage}

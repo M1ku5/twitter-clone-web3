@@ -1,28 +1,12 @@
-import { BsStars } from "react-icons/bs"
-import Post from "../Post"
-import TweetBox from "./TweetBox"
+import React from 'react';
+import Post from '../Post';
 
 const style = {
-    wrapper: `flex-[2] border-r border-l border-[#38444d] overflow-y-scroll`,
+    wrapper: `no-scrollbar`,
     header: `sticky top-0 bg-[#15202b] z-10 p-4 flex justify-between items-center`,
     headerTitle: `text-xl font-bold`,
-}
-
-//   interface Tweet {
-//     author: TweetAuthor
-//     tweet: string
-//     timestamp: string
-//   }
-
-//   interface TweetAuthor {
-//     name: string
-//     walletAddress: string
-//     profileImage: string
-//     isProfileImageNft: boolean
-//   }
-
-
-const tweets = [{
+  }
+  const tweets = [{
     displayName: "daw",
     userName: "0x0000000000000000000000000000000",
     avatar: "https://yt3.ggpht.com/ytc/AKedOLRY9Un_v7Xr9dG1F5NEkqGsGSqwqRz0O3w3r1mI=s900-c-k-c0x00ffffff-no-rj",
@@ -52,28 +36,14 @@ const tweets = [{
     timestamp: "2020-02-20-01T12:00:00:000Z"
 }]
 
-
-function Feed() {
+function ProfileTweets() {
     return (
-        <div className={`${style.wrapper} no-scrollbar`}>
-            <div className={style.header}>
-                <div className={style.headerTitle}>Home</div>
-                <BsStars />
-            </div>
-            <TweetBox />
+        <div className={style.wrapper}>
             {tweets.map((tweet, index) => (
-                <Post
-                    key={index}
-                    displayName={tweet.displayName}
-                    userName={`${tweet.userName.slice(0, 4)}...${tweet.userName.slice(0, 4)}`}
-                    avatar={tweet.avatar}
-                    text={tweet.text}
-                    isProfileImageNft={tweet.isProfileImageNft}
-                    timestamp={tweet.timestamp}
-                />
+                <Post key={index} displayName={tweet.displayName} userName={`${tweet.userName.slice(0,4)}...${tweet.userName.slice(-4)}`} text={tweet.text} avatar={tweet.avatar} timestamp={tweet.timestamp} isProfileImageNft={tweet.isProfileImageNft} />
             ))}
         </div>
-    )
+    );
 }
 
-export default Feed
+export default ProfileTweets;

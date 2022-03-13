@@ -1,3 +1,9 @@
+import { BsFillPatchCheckFill } from "react-icons/bs"
+import { FaRegComment, FaRetweet } from "react-icons/fa"
+import { FiShare } from "react-icons/fi"
+import { AiOutlineHeart } from "react-icons/ai"
+import { format } from "timeago.js"
+
 const style = {
     wrapper: `flex p-3 border-b border-[#38444d]`,
     profileImage: `rounded-full h-[40px] w-[40px] object-cover`,
@@ -10,7 +16,7 @@ const style = {
     image: `rounded-3xl`,
     footer: `flex justify-between mr-28 mt-4 text-[#8899a6]`,
     footerIcon: `rounded-full text-lg p-2`,
-  }
+}
 
 interface PostProps {
     displayName: string
@@ -19,7 +25,7 @@ interface PostProps {
     avatar: string
     timestamp: string
     isProfileImageNft: Boolean | undefined
-  }
+}
 
 const Post = ({
     displayName,
@@ -31,19 +37,49 @@ const Post = ({
 }: PostProps) => {
     return <div className={style.wrapper}>
         <div>
-            {console.log(isProfileImageNft)}
             <img src={avatar} className={
-            isProfileImageNft
-              ? `${style.profileImage} smallHex`
-              : style.profileImage
-          }/>
+                isProfileImageNft
+                    ? `${style.profileImage} smallHex`
+                    : style.profileImage
+            } />
         </div>
         <div className={style.postMain}>
             <div className="">
-                <span></span>
+                <span className={style.headerDetails}>
+                    <span className={style.name}>{displayName}</span>
+                    {isProfileImageNft && (
+                        <span className={style.verified}>
+                            <BsFillPatchCheckFill></BsFillPatchCheckFill>
+                        </span>
+                    )}
+                    <span className={style.handleAndTimeAgo}>
+                        @{userName}•{format(new Date(timestamp))}
+                    </span>
+                </span>
+                <div className={style.tweet}>{text}</div>
+            </div>
+            <div className={style.footer}>
+                <div className={`${style.footerIcon} hover:text-[#1d9bf0] hover:bg-[#1e364a]`}>
+                    <FaRegComment />
+                </div>
+                <div
+                    className={`${style.footerIcon} hover:text-[#03ba7c] hover:bg-[#1b393b]`}
+                >
+                    <FaRetweet />
+                </div>
+                <div
+                    className={`${style.footerIcon} hover:text-[#f91c80] hover:bg-[#39243c]`}
+                >
+                    <AiOutlineHeart />
+                </div>
+                <div
+                    className={`${style.footerIcon} hover:text-[#1d9bf0] hover:bg-[#1e364a]`}
+                >
+                    <FiShare />
+                </div>
             </div>
         </div>
     </div>
-}   
+}
 
 export default Post
